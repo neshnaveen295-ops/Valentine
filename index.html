@@ -1,94 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>My Valentine ❤️</title>
-
 <style>
 body{
 margin:0;
-background:linear-gradient(135deg,#000,#7a0000);
-font-family:Segoe UI,sans-serif;
+background: linear-gradient(135deg,#000,#7a0000);
+font-family: 'Segoe UI', sans-serif;
 color:white;
 text-align:center;
 overflow-x:hidden;
 }
 
-.page{
-display:none;
-min-height:100vh;
-padding:40px 20px;
-}
-
+.page{display:none; min-height:100vh; padding:40px 20px;}
 .active{display:block;}
 
 h1{color:#ff4d6d;font-size:38px;}
-p{font-size:20px;max-width:650px;margin:auto;}
+p{font-size:20px; max-width:650px; margin:auto;}
 
-button{
-padding:15px 35px;
-font-size:20px;
-border:none;
-border-radius:30px;
-background:#ff0033;
-color:white;
-cursor:pointer;
-margin:10px;
-}
-
+button{padding:15px 30px; font-size:20px; border:none; border-radius:30px; cursor:pointer; margin:10px;}
 button:hover{background:#ff3366;}
+#noBtn{background:#333; position:absolute;}
 
-#noBtn{
-background:#333;
-position:absolute;
-}
-
-.gallery img{
-width:180px;
-height:240px;
-object-fit:cover;
-border-radius:15px;
-margin:10px;
-box-shadow:0 0 15px red;
-}
-
-.gifts{
+/* Cards styles */
+.cards{
 display:flex;
-flex-wrap:wrap;
 justify-content:center;
 gap:25px;
-margin-top:40px;
+margin-top:50px;
+flex-wrap:wrap;
+perspective:1000px;
 }
 
-.gift{
+.card{
 width:180px;
-height:180px;
-background:#111;
-border-radius:20px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-font-size:22px;
+height:220px;
 cursor:pointer;
-box-shadow:0 0 15px red;
-transition:0.3s;
+position:relative;
+transform-style: preserve-3d;
+transition: transform 0.6s;
 }
 
-.gift span{
-font-size:60px;
+.card.flipped{
+transform: rotateY(180deg);
 }
 
-.gift:hover{transform:scale(1.1);}
+.card-front, .card-back{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:20px;
+backface-visibility:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+box-shadow:0 0 15px #ff0000;
+color:white;
+font-size:20px;
+}
 
-/* Floating hearts */
+.card-front{background:red;}
+.card-back{background:#8b0000; transform: rotateY(180deg); padding:10px; font-size:18px;}
+
+/* Gallery inside back card */
+.card-back .gallery img{
+width:80px; height:100px; object-fit:cover; margin:5px; border-radius:10px;
+}
+
+/* Hearts floating */
 .heart{
 position:fixed;
 color:red;
 font-size:20px;
 animation:float 6s linear infinite;
 }
-
 @keyframes float{
 0%{transform:translateY(100vh);}
 100%{transform:translateY(-10vh);}
@@ -96,86 +83,51 @@ animation:float 6s linear infinite;
 
 /* Bouquet animation */
 .flower{
-font-size:60px;
+font-size:50px;
 animation:bloom 1.5s infinite alternate;
 }
-
-@keyframes bloom{
-from{transform:scale(0.8);}
-to{transform:scale(1.1);}
-}
+@keyframes bloom{from{transform:scale(0.8);} to{transform:scale(1.1);}}
 </style>
 </head>
-
 <body>
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
-
 <h1>Hi Shaila Nair ❤️</h1>
-
-<p>
-Naveenesh loves you so much.  
-You are my heart and my happiness.
-</p>
-
+<p>Naveenesh loves you so much. You are my heart and my happiness.</p>
 <h1>Will you be my Valentine? 💖</h1>
-
 <div style="margin-top:30px;position:relative;height:120px;">
 <button onclick="goGifts()">YES 💘</button>
 <button id="noBtn" onmouseover="moveNo()">NO 💔</button>
 </div>
-
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-
-<h1>Choose a Gift 🎁</h1>
-<p>Tap any gift to open your surprise</p>
-
-<div class="gifts">
-<div class="gift" onclick="openLetter()">
-<span>🎁</span>
-Gift 1
-</div>
-
-<div class="gift" onclick="openPhotos()">
-<span>🎁</span>
-Gift 2
-</div>
-
-<div class="gift" onclick="openBouquet()">
-<span>🎁</span>
-Gift 3
+<h1>Choose Your Gift 🎁</h1>
+<p>Tap any card to open your surprise 💌</p>
+<div class="cards">
+<!-- Card 1: Romantic Message -->
+<div class="card" onclick="flipCard(this)">
+<div class="card-front">Gift 1</div>
+<div class="card-back">
+<p>Shaila, every moment with you feels like a dream. I love you beyond words ❤️</p>
 </div>
 </div>
 
+<!-- Card 2: Bouquet -->
+<div class="card" onclick="flipCard(this)">
+<div class="card-front">Gift 2</div>
+<div class="card-back">
+<div class="flower">💐🌹🌸🌷🌺</div>
+<p>Flowers for you, My Love ❤️</p>
+</div>
 </div>
 
-<!-- LOVE LETTER -->
-<div class="page" id="letterPage">
-
-<h1>My Love Letter 💖</h1>
-
-<p>
-Shaila Nair,  
-I never knew love could feel this beautiful until you came into my life.  
-You make my world brighter, my heart warmer, and my days better.  
-I promise to love you, protect you, and choose you every single day.  
-Forever yours,  
-Naveenesh ❤️
-</p>
-
-<button onclick="backGifts()">Back</button>
-
-</div>
-
-<!-- PHOTOS -->
-<div class="page" id="photoPage">
-
-<h1>Our Memories 📸</h1>
-
+<!-- Card 3: Photo Gallery -->
+<div class="card" onclick="flipCard(this)">
+<div class="card-front">Gift 3</div>
+<div class="card-back">
 <div class="gallery">
 <img src="photo1.jpg">
 <img src="photo2.jpg">
@@ -183,61 +135,40 @@ Naveenesh ❤️
 <img src="photo4.jpg">
 <img src="photo5.jpg">
 </div>
-
-<button onclick="backGifts()">Back</button>
-
+<p>14/12/26 I love you always and forever ❤️</p>
 </div>
-
-<!-- BOUQUET -->
-<div class="page" id="bouquetPage">
-
-<h1>For You My Love 💐</h1>
-
-<div class="flower">🌹🌸🌷🌺🌻</div>
-<div class="flower">💐💐💐</div>
-<div class="flower">🌹🌸🌷🌺🌻</div>
-
-<p>
-A bouquet of love just for you ❤️
-</p>
-
-<button onclick="backGifts()">Back</button>
-
+</div>
+</div>
 </div>
 
 <script>
-
-function goGifts(){show("page2");}
-function openLetter(){show("letterPage");}
-function openPhotos(){show("photoPage");}
-function openBouquet(){show("bouquetPage");}
-function backGifts(){show("page2");}
-
-function show(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-}
+function goGifts(){showPage('page2');}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active');}
 
 /* Running NO button */
 function moveNo(){
 let x=Math.random()*300;
 let y=Math.random()*100;
-document.getElementById("noBtn").style.transform=
-"translate("+x+"px,"+y+"px)";
+document.getElementById('noBtn').style.transform = 'translate('+x+'px,'+y+'px)';
 }
 
 /* Hearts */
 setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="❤️";
-h.style.left=Math.random()*100+"vw";
-h.style.fontSize=(Math.random()*20+10)+"px";
+let h=document.createElement('div');
+h.className='heart';
+h.innerHTML='❤️';
+h.style.left=Math.random()*100+'vw';
+h.style.fontSize=(Math.random()*20+10)+'px';
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 },300);
 
+/* Card flip */
+function flipCard(card){
+card.classList.toggle('flipped');
+}
 </script>
 
 </body>
 </html>
+
