@@ -1,19 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Happy Valentine ❤️</title>
+<title>My Valentine ❤️</title>
 
 <style>
 body{
 margin:0;
-min-height:100vh;
-background:linear-gradient(135deg,#000000,#8b0000);
-font-family: 'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#000,#7a0000);
+font-family:Segoe UI,sans-serif;
 color:white;
 text-align:center;
 overflow-x:hidden;
 }
+
+.page{
+display:none;
+min-height:100vh;
+padding:40px 20px;
+}
+
+.active{display:block;}
+
+h1{color:#ff4d6d;font-size:38px;}
+p{font-size:20px;max-width:650px;margin:auto;}
+
+button{
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff0033;
+color:white;
+cursor:pointer;
+margin:10px;
+}
+
+button:hover{background:#ff3366;}
+
+#noBtn{
+background:#333;
+position:absolute;
+}
+
+.gallery img{
+width:180px;
+height:240px;
+object-fit:cover;
+border-radius:15px;
+margin:10px;
+box-shadow:0 0 15px red;
+}
+
+.gifts{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:40px;
+}
+
+.gift{
+width:180px;
+height:180px;
+background:#111;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 15px red;
+transition:0.3s;
+}
+
+.gift span{
+font-size:60px;
+}
+
+.gift:hover{transform:scale(1.1);}
 
 /* Floating hearts */
 .heart{
@@ -22,127 +88,93 @@ color:red;
 font-size:20px;
 animation:float 6s linear infinite;
 }
+
 @keyframes float{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-10vh);opacity:0;}
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
 }
 
-/* Confetti */
-.confetti{
-position:fixed;
-width:10px;
-height:10px;
-background:red;
-top:0;
-animation:fall 3s linear infinite;
-}
-@keyframes fall{
-to{transform:translateY(100vh);}
+/* Bouquet animation */
+.flower{
+font-size:60px;
+animation:bloom 1.5s infinite alternate;
 }
 
-.container{
-padding:40px 15px;
-}
-
-h1{
-font-size:40px;
-color:#ff4d6d;
-}
-
-p{
-font-size:20px;
-line-height:1.6;
-max-width:650px;
-margin:auto;
-}
-
-.gallery{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-margin-top:25px;
-gap:15px;
-}
-
-.gallery img{
-width:200px;
-height:250px;
-object-fit:cover;
-border-radius:15px;
-box-shadow:0 0 15px red;
-transition:0.3s;
-}
-.gallery img:hover{
-transform:scale(1.05);
-}
-
-.question{
-margin-top:40px;
-font-size:28px;
-}
-
-.buttons{
-margin-top:25px;
-position:relative;
-height:120px;
-}
-
-button{
-padding:15px 35px;
-font-size:20px;
-border:none;
-border-radius:30px;
-cursor:pointer;
-}
-
-#yesBtn{
-background:#ff0033;
-color:white;
-}
-
-#noBtn{
-background:#333;
-color:white;
-position:absolute;
-}
-
-#yesPage{
-display:none;
-padding-top:60px;
-}
-
-.finalMsg{
-font-size:24px;
-color:#ffb3c6;
-}
-
-/* Mobile */
-@media(max-width:600px){
-.gallery img{
-width:150px;
-height:200px;
-}
-h1{font-size:32px;}
+@keyframes bloom{
+from{transform:scale(0.8);}
+to{transform:scale(1.1);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio id="bgMusic" autoplay loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<div class="container" id="mainPage">
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
 
 <h1>Hi Shaila Nair ❤️</h1>
 
 <p>
 Naveenesh loves you so much.  
-You are my heart, my happiness, my everything.  
-I love you so much.
+You are my heart and my happiness.
 </p>
+
+<h1>Will you be my Valentine? 💖</h1>
+
+<div style="margin-top:30px;position:relative;height:120px;">
+<button onclick="goGifts()">YES 💘</button>
+<button id="noBtn" onmouseover="moveNo()">NO 💔</button>
+</div>
+
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+
+<h1>Choose a Gift 🎁</h1>
+<p>Tap any gift to open your surprise</p>
+
+<div class="gifts">
+<div class="gift" onclick="openLetter()">
+<span>🎁</span>
+Gift 1
+</div>
+
+<div class="gift" onclick="openPhotos()">
+<span>🎁</span>
+Gift 2
+</div>
+
+<div class="gift" onclick="openBouquet()">
+<span>🎁</span>
+Gift 3
+</div>
+</div>
+
+</div>
+
+<!-- LOVE LETTER -->
+<div class="page" id="letterPage">
+
+<h1>My Love Letter 💖</h1>
+
+<p>
+Shaila Nair,  
+I never knew love could feel this beautiful until you came into my life.  
+You make my world brighter, my heart warmer, and my days better.  
+I promise to love you, protect you, and choose you every single day.  
+Forever yours,  
+Naveenesh ❤️
+</p>
+
+<button onclick="backGifts()">Back</button>
+
+</div>
+
+<!-- PHOTOS -->
+<div class="page" id="photoPage">
+
+<h1>Our Memories 📸</h1>
 
 <div class="gallery">
 <img src="photo1.jpg">
@@ -152,71 +184,60 @@ I love you so much.
 <img src="photo5.jpg">
 </div>
 
-<div class="question">
-Will you be my Valentine? 💖
-</div>
-
-<div class="buttons">
-<button id="yesBtn" onclick="yesClicked()">YES 💘</button>
-<button id="noBtn" onmouseover="moveNo()">NO 💔</button>
-</div>
+<button onclick="backGifts()">Back</button>
 
 </div>
 
-<div id="yesPage">
-<h1>YAYYY!!! 🎉❤️</h1>
+<!-- BOUQUET -->
+<div class="page" id="bouquetPage">
 
-<p class="finalMsg">
-Shaila Nair,  
-from the bottom of my heart, thank you for choosing me.  
-I promise to protect you, respect you, and love you endlessly.  
-Every day with you is my favorite day.  
-Forever yours,  
-Naveenesh ❤️
+<h1>For You My Love 💐</h1>
+
+<div class="flower">🌹🌸🌷🌺🌻</div>
+<div class="flower">💐💐💐</div>
+<div class="flower">🌹🌸🌷🌺🌻</div>
+
+<p>
+A bouquet of love just for you ❤️
 </p>
+
+<button onclick="backGifts()">Back</button>
 
 </div>
 
 <script>
-function yesClicked(){
-document.getElementById("mainPage").style.display="none";
-document.getElementById("yesPage").style.display="block";
-startConfetti();
+
+function goGifts(){show("page2");}
+function openLetter(){show("letterPage");}
+function openPhotos(){show("photoPage");}
+function openBouquet(){show("bouquetPage");}
+function backGifts(){show("page2");}
+
+function show(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
 
+/* Running NO button */
 function moveNo(){
-let x = Math.random()*300;
-let y = Math.random()*100;
-document.getElementById("noBtn").style.transform =
+let x=Math.random()*300;
+let y=Math.random()*100;
+document.getElementById("noBtn").style.transform=
 "translate("+x+"px,"+y+"px)";
 }
 
 /* Hearts */
 setInterval(()=>{
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+10)+"px";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+10)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
 },300);
 
-/* Confetti */
-function startConfetti(){
-for(let i=0;i<150;i++){
-let conf=document.createElement("div");
-conf.className="confetti";
-conf.style.left=Math.random()*100+"vw";
-conf.style.background=
-["red","pink","white"][Math.floor(Math.random()*3)];
-conf.style.animationDuration=
-(Math.random()*3+2)+"s";
-document.body.appendChild(conf);
-}
-}
 </script>
 
 </body>
 </html>
-
