@@ -133,20 +133,20 @@ width:80px; height:100px; object-fit:cover; margin:3px; border-radius:10px;
   <p>Tap any envelope to reveal your surprise 💌</p>
   <div class="cards">
 
-    <!-- Gift 1: Romantic Message -->
-    <a href="gift1.html" class="card">
+    <!-- Card 1: Romantic Message -->
+    <a href="card1.html" class="card">
       <div class="card-front">
-        <img src="envelope.png" style="width:100%; height:100%; object-fit:cover;">
+        <img src="envelope1.png" style="width:100%; height:100%; object-fit:cover;">
         <div style="position:absolute;top:45%;width:100%;text-align:center;font-size:22px;color:white;">Gift 1</div>
       </div>
     </a>
 
   <!-- PAGE 2 -->
 <div class="page" id="page2">
-  <h1>Choose Your Gift 🎁</h1>
+  <h1>Choose Your Cards </h1>
   <p>Tap the envelope to reveal your surprise 💌</p>
 
-  <!-- Gift 2 only -->
+  <!-- Card 2 only -->
   <div class="card" onclick="showGift2()">
     <div class="card-front">
       <img src="envelope.png" style="width:200px; height:250px; object-fit:cover; border-radius:12px;">
@@ -157,7 +157,7 @@ width:80px; height:100px; object-fit:cover; margin:3px; border-radius:10px;
   </div>
 </div>
 
-<!-- Gift 2 view -->
+<!-- Card 2 view -->
 <div id="gift2" style="display:none; height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column; background:#ffe6f0;">
   <div style="display:flex; align-items:center; gap:20px; background:#fff; padding:20px; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.2);">
     <img src="bouquet.png" alt="Bouquet" style="width:200px; border-radius:10px;">
@@ -171,18 +171,18 @@ width:80px; height:100px; object-fit:cover; margin:3px; border-radius:10px;
 <script>
 function showGift2() {
   document.getElementById('page2').style.display = 'none';
-  document.getElementById('gift2').style.display = 'flex';
+  document.getElementById('card2').style.display = 'flex';
 }
 
 function backToPage2() {
-  document.getElementById('gift2').style.display = 'none';
+  document.getElementById('card2').style.display = 'none';
   document.getElementById('page2').style.display = 'block';
 }
 </script>
 
 
-    <!-- Gift 3: Photos -->
-    <a href="gift3.html" class="card">
+    <!-- Card 3: Photos -->
+    <a href="card3.html" class="card">
       <div class="card-front">
         <img src="envelope.png" style="width:100%; height:100%; object-fit:cover;">
         <div style="position:absolute;top:45%;width:100%;text-align:center;font-size:22px;color:white;">Gift 3</div>
