@@ -27,6 +27,19 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh);opacity:0;}
 }
 
+/* Confetti */
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+background:red;
+top:0;
+animation:fall 3s linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(100vh);}
+}
+
 .container{
 padding:40px 15px;
 }
@@ -39,7 +52,7 @@ color:#ff4d6d;
 p{
 font-size:20px;
 line-height:1.6;
-max-width:600px;
+max-width:650px;
 margin:auto;
 }
 
@@ -95,15 +108,15 @@ position:absolute;
 
 #yesPage{
 display:none;
-padding-top:100px;
+padding-top:60px;
 }
 
 .finalMsg{
-font-size:26px;
+font-size:24px;
 color:#ffb3c6;
 }
 
-/* Mobile fix */
+/* Mobile */
 @media(max-width:600px){
 .gallery img{
 width:150px;
@@ -116,13 +129,18 @@ h1{font-size:32px;}
 
 <body>
 
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container" id="mainPage">
 
 <h1>Hi Shaila Nair ❤️</h1>
 
 <p>
 Naveenesh loves you so much.  
-You are the most special person in my life.  
+You are my heart, my happiness, my everything.  
 I love you so much.
 </p>
 
@@ -146,17 +164,24 @@ Will you be my Valentine? 💖
 </div>
 
 <div id="yesPage">
-<h1>YAYYYY!!! 🎉❤️</h1>
+<h1>YAYYY!!! 🎉❤️</h1>
+
 <p class="finalMsg">
-You just made Naveenesh the happiest person alive.  
-I promise to love you forever 💕
+Shaila Nair,  
+from the bottom of my heart, thank you for choosing me.  
+I promise to protect you, respect you, and love you endlessly.  
+Every day with you is my favorite day.  
+Forever yours,  
+Naveenesh ❤️
 </p>
+
 </div>
 
 <script>
 function yesClicked(){
 document.getElementById("mainPage").style.display="none";
 document.getElementById("yesPage").style.display="block";
+startConfetti();
 }
 
 function moveNo(){
@@ -166,7 +191,7 @@ document.getElementById("noBtn").style.transform =
 "translate("+x+"px,"+y+"px)";
 }
 
-/* Hearts generator */
+/* Hearts */
 setInterval(()=>{
 let heart=document.createElement("div");
 heart.className="heart";
@@ -176,7 +201,22 @@ heart.style.fontSize=(Math.random()*20+10)+"px";
 document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),6000);
 },300);
+
+/* Confetti */
+function startConfetti(){
+for(let i=0;i<150;i++){
+let conf=document.createElement("div");
+conf.className="confetti";
+conf.style.left=Math.random()*100+"vw";
+conf.style.background=
+["red","pink","white"][Math.floor(Math.random()*3)];
+conf.style.animationDuration=
+(Math.random()*3+2)+"s";
+document.body.appendChild(conf);
+}
+}
 </script>
 
 </body>
 </html>
+
