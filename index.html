@@ -119,7 +119,7 @@ width:80px; height:100px; object-fit:cover; margin:3px; border-radius:10px;
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
 <h1>Hi Shaila Nair ❤️</h1>
-<p>Naveenesh loves you so much. You are my heart and my happiness.</p>
+<p>I loves you so much. You are my heart and my happiness.</p>
 <h1>Will you be my Valentine? 💖</h1>
 <div style="margin-top:30px;position:relative;height:120px;">
 <button onclick="goGifts()">YES 💘</button>
@@ -129,52 +129,67 @@ width:80px; height:100px; object-fit:cover; margin:3px; border-radius:10px;
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-<h1>Choose Your Gift 🎁</h1>
-<p>Tap any envelope to reveal your surprise 💌</p>
-<div class="cards">
+  <h1>Choose Your Cards </h1>
+  <p>Tap any envelope to reveal your surprise 💌</p>
+  <div class="cards">
 
-<!-- Gift 1: Romantic Message -->
-<div class="card" onclick="flipCard(this)">
-  <div class="card-front">
-    <img src="envelope.png" style="width:100%; height:100%; object-fit:cover;">
-    <div style="position:absolute;top:45%;width:100%;text-align:center;font-size:22px;color:white;">Gift 1</div>
-  </div>
-  <div class="card-back">
-    <p>Shaila, every moment with you feels like a dream. I love you beyond words ❤️</p>
-  </div>
-</div>
+    <!-- Gift 1: Romantic Message -->
+    <a href="gift1.html" class="card">
+      <div class="card-front">
+        <img src="envelope.png" style="width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute;top:45%;width:100%;text-align:center;font-size:22px;color:white;">Gift 1</div>
+      </div>
+    </a>
 
-<!-- Gift 2: Bouquet -->
-<div class="card" onclick="flipCard(this)">
-  <div class="card-front">
-    <img src="envelope.png" style="width:100%; height:100%; object-fit:cover;">
-    <div style="position:absolute;top:45%;width:100%;text-align:center;font-size:22px;color:white;">Gift 2</div>
-  </div>
-  <div class="card-back" style="flex-direction:column;">
-    <img src="bouquet.png" style="width:120px; margin-bottom:10px;">
-    <p>Flowers for you, My Love ❤️</p>
-  </div>
-</div>
+  <!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>Choose Your Gift 🎁</h1>
+  <p>Tap the envelope to reveal your surprise 💌</p>
 
-<!-- Gift 3: Photos -->
-<div class="card" onclick="flipCard(this)">
-  <div class="card-front">
-    <img src="envelope.png" style="width:100%; height:100%; object-fit:cover;">
-    <div style="position:absolute;top:45%;width:100%;text-align:center;font-size:22px;color:white;">Gift 3</div>
-  </div>
-  <div class="card-back">
-    <div class="gallery">
-      <img src="photo1.jpg">
-      <img src="photo2.jpg">
-      <img src="photo3.jpg">
-      <img src="photo4.jpg">
-      <img src="photo5.jpg">
+  <!-- Gift 2 only -->
+  <div class="card" onclick="showGift2()">
+    <div class="card-front">
+      <img src="envelope.png" style="width:200px; height:250px; object-fit:cover; border-radius:12px;">
+      <div style="position:absolute; top:45%; width:100%; text-align:center; font-size:22px; color:white;">
+        Gift 2
+      </div>
     </div>
-    <p>14/12/26 I love you always and forever ❤️</p>
   </div>
 </div>
 
+<!-- Gift 2 view -->
+<div id="gift2" style="display:none; height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column; background:#ffe6f0;">
+  <div style="display:flex; align-items:center; gap:20px; background:#fff; padding:20px; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.2);">
+    <img src="bouquet.png" alt="Bouquet" style="width:200px; border-radius:10px;">
+    <p style="font-size:24px; color:#ff3366; margin:0;">Flowers for you, Baby ❤️</p>
+  </div>
+  <button onclick="backToPage2()" style="margin-top:20px; padding:10px 20px; font-size:18px; border:none; border-radius:10px; background:#ff3366; color:white; cursor:pointer;">
+    Back
+  </button>
 </div>
+
+<script>
+function showGift2() {
+  document.getElementById('page2').style.display = 'none';
+  document.getElementById('gift2').style.display = 'flex';
+}
+
+function backToPage2() {
+  document.getElementById('gift2').style.display = 'none';
+  document.getElementById('page2').style.display = 'block';
+}
+</script>
+
+
+    <!-- Gift 3: Photos -->
+    <a href="gift3.html" class="card">
+      <div class="card-front">
+        <img src="envelope.png" style="width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute;top:45%;width:100%;text-align:center;font-size:22px;color:white;">Gift 3</div>
+      </div>
+    </a>
+
+  </div>
 </div>
 
 
