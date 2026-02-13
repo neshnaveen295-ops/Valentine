@@ -13,15 +13,13 @@ text-align:center;
 overflow-x:hidden;
 }
 
-.page{display:none; min-height:100vh; padding:40px 20px;}
-.active{display:block;}
 h1{color:#ff4d6d;font-size:38px;}
 p{font-size:20px; max-width:700px; margin:auto; line-height:1.5;}
 button{padding:15px 30px; font-size:20px; border:none; border-radius:30px; cursor:pointer; margin:10px;}
 button:hover{background:#ff3366;}
 #noBtn{background:#333; position:absolute;}
 
-/* Envelope card container */
+/* Card container */
 .cards{
 display:flex;
 justify-content:center;
@@ -29,8 +27,6 @@ gap:40px;
 margin-top:50px;
 flex-wrap:wrap;
 }
-
-/* Card as envelope */
 .card{
 width:180px;
 height:120px;
@@ -46,9 +42,7 @@ color:white;
 box-shadow:0 0 10px #ff0000;
 transition: 0.3s;
 }
-.card:hover{
-transform: scale(1.05);
-}
+.card:hover{transform: scale(1.05);}
 
 /* Hearts floating */
 .heart{
@@ -63,8 +57,8 @@ animation:float 6s linear infinite;
 }
 
 /* Gift sections */
-.gift-section{display:none; margin-top:30px;}
-.gift-section.active{display:block;}
+.section{display:none; min-height:100vh; padding:40px 20px;}
+.section.active{display:block;}
 
 /* Bouquet styling */
 .bouquet-container{
@@ -99,74 +93,63 @@ width:120px; height:150px; object-fit:cover; border-radius:10px;
 </head>
 <body>
 
-<!-- PAGE 1 -->
-<div class="page active" id="page1">
-<h1>Hi Shaila  ❤️</h1>
-<p>I loves you so much. You are my heart and my happiness.</p>
+<!-- PAGE 1: Intro -->
+<div class="section active" id="page1">
+<h1>Hi Shaila Nair ❤️</h1>
+<p>Naveenesh loves you so much. You are my heart and my happiness.</p>
 <h1>Will you be my Valentine? 💖</h1>
 <div style="margin-top:30px;position:relative;height:120px;">
-<button onclick="goGifts()">YES 💘</button>
+<button onclick="showSection('page2')">YES 💘</button>
 <button id="noBtn" onmouseover="moveNo()">NO 💔</button>
 </div>
 </div>
 
-<!-- PAGE 2 -->
-<div class="page" id="page2">
+<!-- PAGE 2: Gift Selection -->
+<div class="section" id="page2">
 <h1>Choose Your Gift 🎁</h1>
 <p>Tap any envelope to reveal your surprise 💌</p>
 <div class="cards">
-
-<!-- Gift 1: Love Message -->
-<div class="card" onclick="showGift('gift1')">Gift 1</div>
-
-<!-- Gift 2: Bouquet -->
-<div class="card" onclick="showGift('gift2')">Gift 2</div>
-
-<!-- Gift 3: Photos -->
-<div class="card" onclick="showGift('gift3')">Gift 3</div>
-
+<div class="card" onclick="showSection('gift1')">Gift 1</div>
+<div class="card" onclick="showSection('gift2')">Gift 2</div>
+<div class="card" onclick="showSection('gift3')">Gift 3</div>
+</div>
 </div>
 
-<!-- Gift 1 Section -->
-<div class="gift-section" id="gift1">
+<!-- GIFT 1: Love Paragraph -->
+<div class="section" id="gift1">
 <h1>For My Dearest Shaila ❤️</h1>
 <p>
 Shaila, words cannot fully express how deeply I love you. Every moment with you feels like a beautiful dream I never want to wake from. Your smile brightens my darkest days, your laughter is my favorite melody, and your presence completes my soul. From the little things you do to the way you care so deeply, I fall in love with you more every single day. I promise to cherish you, support you, and love you endlessly, today, tomorrow, and forever. You are my everything, my heart, and my home. ❤️
 </p>
+<button onclick="showSection('page2')">Back 💖</button>
 </div>
 
-<!-- Gift 2 Section -->
-<div class="gift-section" id="gift2">
+<!-- GIFT 2: Bouquet -->
+<div class="section" id="gift2">
 <h1>Flowers for You 🌸</h1>
 <div class="bouquet-container">
 <img src="bouquet.png" alt="Bouquet" class="bouquet-img">
 <div class="bouquet-text">Lilies for you, cutiepie ❤️</div>
 </div>
+<button style="margin-top:30px;" onclick="showSection('page2')">Back 💖</button>
 </div>
 
-<!-- Gift 3 Section -->
-<div class="gift-section" id="gift3">
+<!-- GIFT 3: Memories Gallery -->
+<div class="section" id="gift3">
 <h1>Our Memories 📸</h1>
 <div class="gallery">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
-<img src="photo4.jpg">
-<img src="photo5.jpg">
+<img src="1.jpg" alt="Memory 1">
+<img src="2.jpg" alt="Memory 2">
+<img src="3.jpg" alt="Memory 3">
+<img src="4.jpg" alt="Memory 4">
+<img src="5.jpg" alt="Memory 5">
 </div>
-<p>14/12/26 I love you always and forever ❤️</p>
-</div>
-</div>
-  
+<button style="margin-top:30px;" onclick="showSection('page2')">Back 💖</button>
 </div>
 
 <script>
-function goGifts(){
-  showPage('page2');
-}
-
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
@@ -187,13 +170,6 @@ setInterval(()=>{
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
 },300);
-
-/* Show gift section */
-function showGift(giftId){
-  document.querySelectorAll('.gift-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(giftId).classList.add('active');
-  window.scrollTo({top: document.getElementById(giftId).offsetTop, behavior:'smooth'});
-}
 </script>
 
 </body>
